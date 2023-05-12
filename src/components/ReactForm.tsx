@@ -1,4 +1,8 @@
 import { useForm } from "react-hook-form";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers-pro";
+import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
+import { DateRangeCalendar } from "@mui/x-date-pickers-pro/DateRangeCalendar";
 
 const ReactForm = () => {
   const {
@@ -9,6 +13,11 @@ const ReactForm = () => {
   return (
     <div className="flex flex-col items-center">
       <div>리액트폼</div>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DemoContainer components={["DateRangeCalendar"]}>
+          <DateRangeCalendar />
+        </DemoContainer>
+      </LocalizationProvider>
       <form
         className="flex flex-col justify-center items-center gap-4"
         onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}
@@ -52,6 +61,7 @@ const ReactForm = () => {
         <button type="submit" disabled={isSubmitting}>
           로그인
         </button>
+        <div></div>
       </form>
     </div>
   );
