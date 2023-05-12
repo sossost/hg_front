@@ -5,12 +5,19 @@ const Header = () => {
   const headerStyle:string[] = [headerLayout];
   const headerContainerLayout:string = 'w-full h-full mobile:w-full desktop:w-[1024px] flex flex-row justify-between items-center border-b border-solid px-5';
   const headerContainerStyle:string[] = [headerContainerLayout];
+  const headerMenuSetLayout:string = 'flex flex-row justify-between items-center';
+  const headerMenuSetStyle:string[] = [headerMenuSetLayout];
+
+
   return (
     <div className={headerStyle.join('')}>
       <div className={headerContainerStyle.join('')}>
         <div>뒤로가기</div>
         <div>로고</div>
-        <div>검색/메뉴</div>
+        <div className={headerMenuSetStyle.join('')}>
+          <div>탐색</div>
+          <div>메뉴</div>
+        </div>
       </div>
     </div>
   )
