@@ -8,6 +8,7 @@ type Props = {
   onBlur?: () => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   value?: string;
+  ref?: React.RefObject<HTMLInputElement>;
   disabled?: boolean;
 };
 
@@ -19,6 +20,7 @@ const TextInput = ({
   onBlur,
   onKeyDown,
   value,
+  ref,
   disabled,
 }: Props) => {
   const [text, setText] = useState(value);
@@ -28,6 +30,8 @@ const TextInput = ({
     setText(value);
     onChange(value);
   };
+
+  console.log(ref);
 
   return (
     <input
@@ -40,6 +44,7 @@ const TextInput = ({
       onBlur={onBlur}
       onKeyDown={onKeyDown}
       disabled={disabled}
+      ref={ref}
     />
   );
 };

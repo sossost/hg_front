@@ -23,7 +23,7 @@ const BackBtn = ({ className, message }: props) => {
   };
 
   return (
-    <button className={className} onClick={backBtnHandler}>
+    <button className={className} onClick={backBtnHandler} type="button">
       <img className="h-[19px]" src={backIcon} alt="backIcon" />
     </button>
   );
