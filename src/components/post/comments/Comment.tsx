@@ -1,6 +1,18 @@
-//**댓글 컴포넌트 */
+import React, { useState } from "react";
+import styled from "styled-components";
+
+const StyledImage = styled.img`
+  width: 25px;
+  height: 25px;
+`;
+
+/**댓글 컴포넌트 */
 const Comment = () => {
-  const imgUrl = "../../../.././public/123.jpeg";
+  const [isLiked, setIsLiked] = useState(false);
+  const handleLikeButtonClick = () => {
+    setIsLiked(!isLiked);
+  };
+  const userImgUrl = "/user1-image.png";
   return (
     <>
       <div className="w-[100%]">
@@ -8,12 +20,12 @@ const Comment = () => {
           <div className=" flex justify-between ">
             <div>
               <img
-                className="max-h-[40px] max-w-[40px]"
-                src={imgUrl}
+                className="max-h-[40px] max-w-[40px] m-[10px]"
+                src={userImgUrl}
                 alt={"사용자 이미지"}
               ></img>
             </div>
-            <div className=" flex-col ">
+            <div className=" flex-col m-[10px]">
               <div>
                 <span>닉네임</span>
               </div>
@@ -23,7 +35,18 @@ const Comment = () => {
             </div>
           </div>
           <div className="flex items-center">
-            <button>하트</button>
+            <div className="border-[2px] border-[green] m-[10px] flex items-center ">
+              <button
+                className="flex m-[0px] m-[auto] mr-[10px]"
+                onClick={handleLikeButtonClick}
+              >
+                <StyledImage
+                  src={isLiked ? "/heart-filled.png" : "/heart-empty.png"}
+                  alt="하트 이미지"
+                />
+              </button>
+              <span className="w-[50px]">count</span>
+            </div>
           </div>
         </div>
       </div>
