@@ -1,6 +1,6 @@
 //**게시물 조회 컴포넌트 */
 const ViewPost = () => {
-  const imgUrl = "../../.././public/123.jpeg";
+  const tripImgUrl = "/trip-image.png";
   return (
     <>
       <div className="w-[100%] m-[0px] m-[auto] border-[2px] border-[black] ">
@@ -16,11 +16,7 @@ const ViewPost = () => {
           <span>2023/05/12</span>
         </div>
         <div className="border-[2px] border-[pink]">
-          <img
-            className="h-[400px] w-[400px]"
-            src={imgUrl}
-            alt={"여행이미지"}
-          ></img>
+          <img className="w-[100%]" src={tripImgUrl} alt={"여행이미지"}></img>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
           atque dolores ipsum illum nihil explicabo commodi, in nulla ad eos sed
           assumenda minus odit dolor reiciendis nesciunt labore quo ullam!Lorem
