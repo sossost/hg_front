@@ -1,17 +1,29 @@
-import HashTag from "../components/post/HashTag";
+import styled from "styled-components";
 import ViewPost from "../components/post/ViewPost";
 import Comments from "../components/post/comments/Comments";
+import HashTag from "../components/post/HashTag";
 
-//**게시물(상세) 조회 페이지 */
+const ViewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  border: 2px solid red;
+  min-width: 390px;
+  min-height: 390px;
+  gap: 20px;
+`;
+
 const ViewPostPage = () => {
   return (
-    <>
-      <div className="flex flex-col justify-center items-center w-[100%]  m-[0px] m-[auto] border-[2px] border-[red] min-w-[390px] min-h-[390px] space-y-4">
-        <ViewPost />
-        <Comments />
-        <HashTag />
-      </div>
-    </>
+    <ViewContainer>
+      <ViewPost />
+      <Comments />
+      <HashTag />
+    </ViewContainer>
   );
 };
+
 export default ViewPostPage;
