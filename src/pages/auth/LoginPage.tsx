@@ -98,7 +98,7 @@ const LoginPage = () => {
                   },
                 })}
                 className="p-[10px] border-[#73BBFB] border-[2px] 
-              w-[350px] h-[55px]  rounded-[10px]
+              w-[300px] h-[55px]  rounded-[10px]
               focus:outline-[#167DD8] focus:outline-[2px]"
               />
             </div>
@@ -131,7 +131,7 @@ const LoginPage = () => {
                   },
                 })}
                 className="p-[10px] border-[#73BBFB] border-[2px] 
-              w-[350px] h-[55px] rounded-[10px]
+              w-[300px] h-[55px] rounded-[10px]
               focus:outline-[#167DD8] focus:outline-[2px]"
               />
             </div>
@@ -140,7 +140,7 @@ const LoginPage = () => {
               <button
                 type="submit"
                 className="p-[10px] bg-[#73BBFB] text-[#FFFFFF]
-              w-[350px] h-[55px]  rounded-[10px] text-[18px]"
+              w-[300px] h-[55px]  rounded-[10px] text-[18px]"
               >
                 로그인
               </button>
@@ -155,10 +155,27 @@ const LoginPage = () => {
         </div>
 
         {/* SNS 계정 로그인 */}
-        <div className="flex flex-col my-[10px]">
-          <span className="text-[17px] font-[600] text-[#1E5A8F]">
+        <div className="flex flex-col my-[10px] justify-center items-center">
+          <span className="text-[17px] font-[600] mb-[10px] text-[#1E5A8F]">
             SNS계정으로 간편하게 로그인
           </span>
+          <div className="flex space-x-[10px]">
+            <img
+              src="/구글 로그인.png"
+              alt="google-icon"
+              className="h-[50px]"
+            />
+            <img
+              src="/카카오 로그인.png"
+              alt="kakao-icon"
+              className="h-[50px]"
+            />
+            <img
+              src="/네이버 로그인.png"
+              alt="google-icon"
+              className="h-[50px]"
+            />
+          </div>
         </div>
       </div>
     </>
