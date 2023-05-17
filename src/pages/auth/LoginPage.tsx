@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useRecoilState } from "recoil";
+import { isLoggedInState, userDataState } from "../../store/recoilAtoms";
 
 const LoginPage = () => {
-  // const loginSubmitHandler = (data) => {
-  //   const userId = data.username;
-  //   const userPwd = data.password;
-  // };
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+  const [userData, setUserData] = useRecoilState(userDataState);
 
   // react-hook-form 라이브러리의 기능을 활용하여 폼 처리
   const {
@@ -15,11 +15,15 @@ const LoginPage = () => {
     // handleSubmit : 각 폼 요소에 대한 입력 유효성 검사 및 제출 처리
     handleSubmit,
     // formState : 폼 상태 정보 담음
-    formState: { isSubmitting, isDirty, errors },
+    formState: { isDirty, errors },
   } = useForm();
 
   // 로그인 버튼 눌렀을 때 동작 정의
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
+    const userdata1 = { email: "wow@naver.com", id: 1, name: "lsh" };
+    setUserData(() => userdata1);
+    setIsLoggedIn(true);
+    console.log(isLoggedIn, userData);
     try {
       // 서버 URL 설정
       const url = "";
@@ -37,15 +41,11 @@ const LoginPage = () => {
       const { accessToken, refreshToken } = response.data;
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
-
-      // 로그인 이후 필요한 작업 수행
-      fetchProtectedData();
+      setIsLoggedIn(true);
     } catch (error) {
       console.error(error);
     }
   };
-
-  /** fhrm */
 
   return (
     <>
@@ -67,7 +67,7 @@ const LoginPage = () => {
         <div>
           <form
             className="flex flex-col justify-center items-center gap-3"
-            onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}
+            onSubmit={handleSubmit(onSubmit)}
           >
             {/* 아이디 입력 */}
             <div>
@@ -146,6 +146,19 @@ const LoginPage = () => {
               </button>
             </div>
           </form>
+        </div>
+        {/* 아이디 찾기, 비밀번호 찾기 */}
+        <div className="flex my-[10px] text-[13px]">
+          <Link to={"/finduserid"}>아이디 찾기</Link>
+          <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+          <Link to={"/findpassword"}>비밀번호 찾기</Link>
+        </div>
+
+        {/* SNS 계정 로그인 */}
+        <div className="flex flex-col my-[10px]">
+          <span className="text-[17px] font-[600] text-[#1E5A8F]">
+            SNS계정으로 간편하게 로그인
+          </span>
         </div>
       </div>
     </>
