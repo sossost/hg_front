@@ -52,7 +52,7 @@ const LoginPage = () => {
       <div className="flex flex-col items-center">
         {/* 로그인 Title*/}
         <div className="mb-[15px] mt-[50px]">
-          <h1 className="text-[32px] font-[600]">로그인</h1>
+          <h1 className="text-[30px] font-[600]">로그인</h1>
         </div>
 
         {/* 회원가입 안내 버튼 */}
@@ -161,18 +161,18 @@ const LoginPage = () => {
           </span>
           <div className="flex space-x-[10px]">
             <img
-              src="/구글 로그인.png"
-              alt="google-icon"
+              src="/google-auth-logo.png"
+              alt="google-auth-logo"
               className="h-[50px]"
             />
             <img
-              src="/카카오 로그인.png"
-              alt="kakao-icon"
+              src="/kakao-auth-logo.png"
+              alt="kakao-auth-logo"
               className="h-[50px]"
             />
             <img
-              src="/네이버 로그인.png"
-              alt="google-icon"
+              src="/naver-auth-logo.png"
+              alt="naver-auth-logo"
               className="h-[50px]"
             />
           </div>
