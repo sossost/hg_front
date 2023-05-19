@@ -27,16 +27,13 @@ const SignUpPage: React.FC = () => {
         // 회원가입 성공 처리 로직
         if (response.status === 200) {
           console.log("회원가입이 성공적으로 완료되었습니다.");
-          // Additional success handling code here
         } else {
           console.log("회원가입에 실패했습니다.");
-          // Additional failure handling code here
         }
       })
       .catch((error) => {
         // 회원가입 실패 처리 로직
         console.error("회원가입 중 오류가 발생했습니다.", error);
-        // Additional failure handling code here
       });
   };
 
@@ -81,7 +78,6 @@ const SignUpPage: React.FC = () => {
           <div className="flex flex-col">
             <label className="mb-[5px]">아이디</label>
             <input
-              //   placeholder="최소 4자이상 영문 소문자, 숫자, _ 조합"
               className="p-[10px] border-[#73BBFB] border-[2px] 
               w-[300px] h-[55px]  rounded-[10px]
               focus:outline-[#167DD8] focus:outline-[2px]"
@@ -114,7 +110,6 @@ const SignUpPage: React.FC = () => {
             <label className="mb-[5px]">비밀번호</label>
             <input
               type="password"
-              //   placeholder="최소 8자 이상 영문자, 숫자 조합"
               {...register("password", {
                 required: "비밀번호는 필수 입력입니다.",
                 minLength: {

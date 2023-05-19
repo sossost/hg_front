@@ -8,6 +8,12 @@ const LoginPage = () => {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
   const [userData, setUserData] = useRecoilState(userDataState);
 
+  // 입력 데이터 형식 지정
+  type FormData = {
+    userid: string;
+    password: string;
+  };
+
   // react-hook-form 라이브러리의 기능을 활용하여 폼 처리
   const {
     // register : 폼 요소들을 react-hook-form에 등록하는 데 사용됨
@@ -16,10 +22,10 @@ const LoginPage = () => {
     handleSubmit,
     // formState : 폼 상태 정보 담음
     formState: { isDirty, errors },
-  } = useForm();
+  } = useForm<FormData>();
 
   // 로그인 버튼 눌렀을 때 동작 정의
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: FormData) => {
     const userdata1 = { email: "wow@naver.com", id: 1, name: "lsh" };
     setUserData(() => userdata1);
     setIsLoggedIn(true);
