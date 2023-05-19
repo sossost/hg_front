@@ -30,14 +30,7 @@ const InstagramGallery = () => {
       <Grid>
         <Image src="123.jpeg" alt="Image 1" />
         <Image src="123.jpeg" alt="Image 2" />
-        <Image src="123.jpeg" alt="Image 3" />
-        <Image src="123.jpeg" alt="Image 4" />
-        <Image src="123.jpeg" alt="Image 5" />
-        <Image src="123.jpeg" alt="Image 6" />
-        {/* 추가적인 이미지 */}
       </Grid>
     </Container>
   );
 };
-
-export default InstagramGallery;
