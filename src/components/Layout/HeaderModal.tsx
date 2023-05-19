@@ -20,7 +20,7 @@ const HeaderModal = () => {
     <div className="inset-0 w-full h-[100vh] fixed flex flex-column justify-center items-center text-base" >
       {!userLogin ? ( 
       <div className="bg-white w-[90%] desktop:w-[400px] h-auto z-30 rounded-xl flex flex-col justify-around items-center">
-        <div className={`${modalContentsStyle} border-b border-solid`} ><Link to="/login" onClick={()=>setModal(false)}>로그인</Link></div>
+        <Link className="w-full flex flex-row justify-center items-center" to="/login" onClick={()=>setModal(false)}><div className={`${modalContentsStyle} border-b border-solid`} >로그인</div></Link>
         <div className={`${modalContentsStyle}`}>회원가입</div>
       </div>
       ):(
