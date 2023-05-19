@@ -6,11 +6,17 @@ const StyledImage = styled.img`
   height: 25px;
 `;
 
-//**좋아요 컴포넌트 */
-const PostLikes = () => {
+type PostLikesProps = {
+  initialLikesCount?: number;
+};
+
+/**좋아요 컴포넌트 */
+const PostLikes = ({ initialLikesCount }: PostLikesProps) => {
   const [isLiked, setIsLiked] = useState(false);
+  const [likesCount, setLikesCount] = useState(13);
 
   const handleLikeButtonClick = () => {
+    setLikesCount((prevCount) => (isLiked ? prevCount - 1 : prevCount + 1));
     setIsLiked(!isLiked);
   };
 
@@ -24,7 +30,11 @@ const PostLikes = () => {
             onClick={handleLikeButtonClick}
           />
         </button>
-        <span className="w-[50px]">count</span>
+        {likesCount === 0 ? (
+          <span className="w-[50px]"></span>
+        ) : (
+          <span className="w-[50px]">{likesCount}</span>
+        )}
       </div>
     </>
   );

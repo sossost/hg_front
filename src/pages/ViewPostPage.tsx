@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ViewPost from "../components/post/ViewPost";
-import Comments from "../components/post/comments/Comments";
 import HashTag from "../components/post/HashTag";
+import PostCommentsContainer from "../components/post/PostCommentsContainer";
 
 const ViewContainer = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ const ViewPostPage = () => {
   return (
     <ViewContainer>
       <ViewPost />
-      <Comments />
+      <PostCommentsContainer />
       <HashTag />
     </ViewContainer>
   );

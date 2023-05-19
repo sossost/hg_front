@@ -17,13 +17,6 @@ const ViewPost = () => {
         </div>
         <div className="border-[2px] border-[pink]">
           <img className="w-[100%]" src={tripImgUrl} alt={"여행이미지"}></img>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-          atque dolores ipsum illum nihil explicabo commodi, in nulla ad eos sed
-          assumenda minus odit dolor reiciendis nesciunt labore quo ullam!Lorem
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus
-          architecto quae in natus similique dignissimos distinctio error ab
-          minus, quia velit quisquam. Minus, provident voluptatem recusandae
-          excepturi mollitia quam commodi!
         </div>
       </div>
     </>
