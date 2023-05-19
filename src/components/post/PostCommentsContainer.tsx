@@ -34,7 +34,7 @@ const PostCommentsContainer = () => {
 
   return (
     <>
-      <div className="w-[100%] flex justify-between border-[2px] border-[yellow] ">
+      <div className="w-[100%] flex justify-between border-[1px] border-[gray] ">
         <div className="flex items-center">
           <button onClick={handleCommentImageClick}>
             <CommentImage src={"/comment.png"} alt="댓글 이미지" />

@@ -10,7 +10,6 @@ const ViewContainer = styled.div`
   align-items: center;
   width: 100%;
   margin: 0 auto;
-  border: 2px solid red;
   min-width: 390px;
   min-height: 390px;
   gap: 20px;

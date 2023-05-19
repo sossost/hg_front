@@ -22,7 +22,7 @@ const PostLikes = ({ initialLikesCount }: PostLikesProps) => {
 
   return (
     <>
-      <div className="border-[2px] border-[green] m-[10px] flex items-center">
+      <div className=" m-[10px] flex items-center">
         <button className="flex m-[0px] m-[auto] mr-[10px]">
           <StyledImage
             src={isLiked ? "/heart-filled.png" : "/heart-empty.png"}

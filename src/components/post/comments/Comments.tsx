@@ -21,7 +21,7 @@ const Comments = () => {
             </div>
             <div>
               <input
-                className="border-[2px] border-[gray]"
+                className="border-[1.5px] border-[gray]"
                 placeholder="댓글을 입력하세요.."
               ></input>
             </div>

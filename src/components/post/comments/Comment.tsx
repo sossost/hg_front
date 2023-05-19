@@ -37,7 +37,7 @@ const Comment = () => {
             </div>
           </div>
           <div className="flex items-center">
-            <div className="border-[2px] border-[green] m-[10px] flex items-center w-[85px] ">
+            <div className=" m-[10px] flex items-center w-[85px] ">
               <button
                 className="flex m-[0px] m-[auto] mr-[10px]"
                 onClick={handleLikeButtonClick}
