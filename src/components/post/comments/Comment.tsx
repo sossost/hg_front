@@ -8,11 +8,12 @@ const StyledImage = styled.img`
 
 /**댓글 컴포넌트 */
 const Comment = () => {
+  const userImgUrl = "/user1-image.png";
   const [isLiked, setIsLiked] = useState(false);
   const handleLikeButtonClick = () => {
     setIsLiked(!isLiked);
   };
-  const userImgUrl = "/user1-image.png";
+
   return (
     <>
       <div className="w-[100%]">
