@@ -5,20 +5,24 @@ import Layout from "./components/Layout/Layout";
 // import InstagramGallery from "./components/MobileFirstPage";
 // import ReactForm from "./components/ReactForm";
 import LoginPage from "./pages/auth/LoginPage";
+import HomePage from "./pages/home/HomePage";
 
 function App() {
   return (
-    <Layout>
+    
       <Router>
+        <Layout>
         {/* <Routes>
           <Route path="/" element={<ReactForm />} />
         </Routes> */}
 
         <Routes>
+          <Route path="/" element={<HomePage/>} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
+        </Layout>
       </Router>
-    </Layout>
+
   );
 }
 
