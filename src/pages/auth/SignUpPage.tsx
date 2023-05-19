@@ -82,7 +82,7 @@ const SignUpPage: React.FC = () => {
               w-[300px] h-[55px]  rounded-[10px]
               focus:outline-[#167DD8] focus:outline-[2px]"
               {...register("userid", {
-                required: "아이디는 필수 입력입니다.",
+                required: "아이디를 입력해주세요",
                 minLength: {
                   value: 4,
                   message: "아이디는 최소 4자 이상이어야 합니다.",
@@ -100,7 +100,7 @@ const SignUpPage: React.FC = () => {
             />
             {errors.userid && (
               <span className="mt-[5px] text-[14.5px] text-[#167DD8]">
-                아이디를 입력해주세요.
+                {errors.userid.message}
               </span>
             )}
           </div>
@@ -132,7 +132,7 @@ const SignUpPage: React.FC = () => {
             />
             {errors.password && (
               <span className="mt-[5px] text-[14.5px] text-[#167DD8]">
-                비밀번호를 입력해주세요.
+                {errors.password.message}
               </span>
             )}
           </div>
@@ -179,7 +179,7 @@ const SignUpPage: React.FC = () => {
             />
             {errors.nickname && (
               <span className="mt-[5px] text-[14.5px] text-[#167DD8]">
-                닉네임을 입력해주세요.
+                {errors.nickname.message}
               </span>
             )}
           </div>
