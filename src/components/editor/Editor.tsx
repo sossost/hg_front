@@ -166,7 +166,7 @@ const Editor = ({ post }: { post: any }) => {
         />
         <Modal
           visible={isInvalidModal}
-          className="flex justify-center items-center bg-[#ffffff] fixed h-[60px] w-[300px] rounded-[5px] animate-slideUp"
+          className="flex justify-center items-center bg-[#ffffff] fixed h-[60px] w-[300px] rounded-[5px] top-[50%] animate-slideUp"
           setIsModal={setIsInvalidModal}
         >
           <ModalDiv>제목을 입력해주세요</ModalDiv>
