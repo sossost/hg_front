@@ -11,7 +11,7 @@ const TripLocation = (props: props) => {
   /** GPS 기반 현재 위치 가져오기 핸들러 - 좌표값 받아와서 국가 정보로 변환*/
   const locationChangeHandler = () => {
     const onSuccess = async (location: {
-      coords: { latitude: number; longitude: number };
+      coords: { latitude: any; longitude: any };
     }) => {
       const lat = location.coords.latitude;
       const lng = location.coords.longitude;
