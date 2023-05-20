@@ -1,6 +1,5 @@
 import { useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import AWS from "aws-sdk";
 import { escape } from "lodash";
 import styled from "styled-components";
 
@@ -28,13 +27,13 @@ import "../../styles/Editor.css";
 // });
 
 /** AWS S3 클라이언트 */
-var s3 = new AWS.S3({
-  accessKeyId: "",
-  secretAccessKey: "",
-  endpoint: "",
-  s3ForcePathStyle: true,
-  signatureVersion: "v4",
-});
+// var s3 = new AWS.S3({
+//   accessKeyId: "",
+//   secretAccessKey: "",
+//   endpoint: "",
+//   s3ForcePathStyle: true,
+//   signatureVersion: "v4",
+// });
 
 /** 여행일기 작성 에디터 컴포넌트 (타입 수정예정) */
 const Editor = ({ post }: { post: any }) => {
