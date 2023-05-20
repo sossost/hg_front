@@ -6,6 +6,7 @@ import Layout from "./components/Layout/Layout";
 // import ReactForm from "./components/ReactForm";
 import LoginPage from "./pages/auth/LoginPage";
 import HomePage from "./pages/home/HomePage";
+import ExplorePage from "./pages/explore/ExplorePage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage/>} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/explore" element={<ExplorePage />} />
         </Routes>
         </Layout>
       </Router>
