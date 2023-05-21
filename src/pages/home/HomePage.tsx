@@ -78,7 +78,6 @@ const BgSky =styled.div`
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-  background-color: blue;
 `
 const BgCloud1 =styled.div`
   top: 30%;
@@ -156,7 +155,7 @@ const HomePage = () => {
   const homeIntroduceStyle:string = " w-full flex h-[400px] flex-row justify-center desktop:justify-end items-end flex-wrap relative mb-[150px] ";
   const homeIntroduceTxtStyle:string = " w-[80%] desktop:w-[45%] h-[220px] bg-white absolute margin-box m-8 p-4 top-[75%] desktop:top-[50%] rounded-2xl shadow-lg flex flex-col z-500 justify-center items-center";
   const homeIntroduceTxtBtnStyle:string = "w-[200px] h-[30px] bg-[#73BBFB] text-base font-bold rounded-3xl transition-colors hover:bg-[#0C94E8] text-white my-3";
-  const homeFurtherIntroduceStyle:string = " w-full flex h-[600px] flex-row-reverse justify-center desktop:justify-around items-center flex-wrap z-100 relative ";
+  const homeFurtherIntroduceStyle:string = " w-full flex h-[400px] flex-row-reverse justify-center desktop:justify-around items-center flex-wrap z-100 relative ";
   const homeWelcomeTxtStyle:string = " border border-solid w-[90%] h-[150px] bg-white margin-box m-8 p-4 rounded-3xl shadow-lg flex text-lg flex-row justify-center items-center";
 
 
@@ -191,7 +190,7 @@ const HomePage = () => {
             <div className="  w-[80%] desktop:w-[40%] h-[300px]">
 
             </div>
-            <div className=" w-[80%] h-[600px] desktop:w-[50%] flex flex-col justify-center items-center">
+            <div className=" w-[80%] h-[300px] desktop:w-[50%] flex flex-col justify-center items-center">
               <p className="text-m w-[85%] py-3 leading-6 font-light text-center desktop:text-right">
                 트립스케치에 오신 것을 환영합니다. <br/>트립스케치는 여행 경험을 다른 사람들과 공유하고 사진과 일기를 한 곳에 보관할 수 있는 온라인 여행 일기장입니다. 
                 여러분은 트립스케치를 통해 다른 여행객들과 연결되어 새로운 여행지를 발견하고 다음 모험을 계획할 수 있습니다. 
@@ -210,6 +209,7 @@ const HomePage = () => {
           <div className={`${homeWelcomeTxtStyle}`}>
             <p className="pr-1">안녕하세요.</p> <p className=" text-[#73BBFB] font-extrabold px-1 ">{user.name}</p><p>님</p>
           </div>
+
         </div>
       )}
 
