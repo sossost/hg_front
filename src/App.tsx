@@ -1,17 +1,16 @@
-import Editor from "./components/UI/Editor";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
-// import MobileFirstPage from "./components/MobileFirstPage";
-// import InstagramGallery from "./components/MobileFirstPage";
-// import ReactForm from "./components/ReactForm";
 import LoginPage from "./pages/auth/LoginPage";
 import HomePage from "./pages/home/HomePage";
 import ExplorePage from "./pages/explore/ExplorePage";
+import NewPostPage from "./pages/post/NewPostPage";
 
+const queryClient = new QueryClient();
 function App() {
   return (
-    
-      <Router>
+    <Router>
+      <QueryClientProvider client={queryClient}>
         <Layout>
         {/* <Routes>
           <Route path="/" element={<ReactForm />} />
@@ -21,10 +20,12 @@ function App() {
           <Route path="/" element={<HomePage/>} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/explore" element={<ExplorePage />} />
-        </Routes>
+          <Route path="/manage/newpost" element={<NewPostPage />} />
+          <Route path="/manage/newpost/:postId" element={<NewPostPage />} />
+          </Routes>
         </Layout>
-      </Router>
-
+      </QueryClientProvider>
+    </Router>
   );
 }
 
