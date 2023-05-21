@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
+import Post from '../../components/UI/Post';
 
 // 유저 로그인 테스트용 코드
 import { UserLoginContext } from '../../components/Layout/Layout';
@@ -147,7 +148,10 @@ const BgPerson =styled.img`
 
 // 더미데이터
 const user = {
-  name: "Mirabel",
+  id: 1,
+  thumbnail: '/profile_mirabel.webp',
+  name: '미라벨 마드리갈',
+  following: [],
 }
 
 const HomePage = () => {
@@ -156,7 +160,7 @@ const HomePage = () => {
   const homeIntroduceTxtStyle:string = " w-[80%] desktop:w-[45%] h-[220px] bg-white absolute margin-box m-8 p-4 top-[75%] desktop:top-[50%] rounded-2xl shadow-lg flex flex-col z-500 justify-center items-center";
   const homeIntroduceTxtBtnStyle:string = "w-[200px] h-[30px] bg-[#73BBFB] text-base font-bold rounded-3xl transition-colors hover:bg-[#0C94E8] text-white my-3";
   const homeFurtherIntroduceStyle:string = " w-full flex h-[400px] flex-row-reverse justify-center desktop:justify-around items-center flex-wrap z-100 relative ";
-  const homeWelcomeTxtStyle:string = " border border-solid w-[90%] h-[150px] bg-white margin-box m-8 p-4 rounded-3xl shadow-lg flex text-lg flex-row justify-center items-center";
+  const homeWelcomeTxtStyle:string = " border border-solid w-[90%] desktop:w-[40%] h-auto bg-white margin-box m-8 p-4 rounded-3xl shadow-lg flex text-lg flex-col justify-center items-center";
 
 
   // 유저 로그인 테스트용 코드
@@ -207,7 +211,44 @@ const HomePage = () => {
       ) : (
         <div className=" w-full flex flex-col items-center">
           <div className={`${homeWelcomeTxtStyle}`}>
-            <p className="pr-1">안녕하세요.</p> <p className=" text-[#73BBFB] font-extrabold px-1 ">{user.name}</p><p>님</p>
+            <div className=" w-[100px] h-[100px] rounded-full bg-slate-100 m-5 overflow-hidden shadow-md">
+            <img className=" w-full h-full object-cover" src={user.thumbnail}/>
+            </div>
+            <div className="flex flex-row h-[50px] items-center">
+              <p className="pr-1">안녕하세요.</p> <p className=" text-[#73BBFB] font-extrabold px-1 ">{user.name}</p><p>님</p>
+            </div>
+          </div>
+          <div className=" text-[#73BBFB] w-full h-[80px] mt-5 flex flex-col justify-center items-center text-lg text-center">
+          <div className="  translate-y-4 w-full border-b border-[0.5px] solid"></div>
+          <p className=" bg-white z-30 px-5">{user.name}님이 구독중인 사람들의 스케치</p>
+          </div>
+          {user.following.length === 0 ? (
+              <div className="w-full h-[100px] flex flex-col justify-center static items-center">
+                <p className="italic opacity-30 text-lg my-3">현재 아무도 구독하지 않고 있습니다.</p>
+                <Link to ="/explore"><button className={`${homeIntroduceTxtBtnStyle}`} >트립스케치 둘러보기</button></Link>
+              </div>
+            ) : (
+              <div className="w-full flex flex-row flex-wrap justify-center desktop:justify-start static items-start">
+                <Post/>
+                <Post/>
+                <Post/>
+                <Post/>
+                <Post/>
+              </div>
+            )}
+
+          
+
+          <div className=" text-[#73BBFB] w-full h-[80px] mt-5 flex flex-col justify-center items-center text-lg text-center">
+          <div className="  translate-y-4 w-full border-b border-[0.5px] solid"></div>
+          <p className=" bg-white z-30 px-5">요즘 뜨는 스케치</p>
+          </div>
+          <div className="w-full flex flex-row flex-wrap justify-center desktop:justify-start static items-start">
+            <Post />
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
           </div>
 
         </div>
