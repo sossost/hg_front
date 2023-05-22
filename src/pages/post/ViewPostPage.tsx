@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import ViewPost from "../components/post/ViewPost";
-import HashTag from "../components/post/HashTag";
-import PostCommentsContainer from "../components/post/PostCommentsContainer";
+import ViewPost from "../../components/post/ViewPost";
+import HashTag from "../../components/post/HashTag";
+import PostCommentsContainer from "../../components/post/PostCommentsContainer";
 
 const ViewContainer = styled.div`
   display: flex;

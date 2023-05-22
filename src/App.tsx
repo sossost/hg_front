@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import LoginPage from "./pages/auth/LoginPage";
-import ViewPostPage from "./pages/ViewPostPage";
+import ViewPostPage from "./pages/post/ViewPostPage";
 import { RecoilRoot } from "recoil";
 import SignUpPage from "./pages/auth/SignUpPage";
 import FindUserIdPage from "./pages/auth/FindUserIdPage";
