@@ -11,9 +11,9 @@ type PostLikesProps = {
 };
 
 /**좋아요 컴포넌트 */
-const PostLikes = ({ initialLikesCount }: PostLikesProps) => {
+const PostLikes = ({ initialLikesCount = 13 }: PostLikesProps) => {
   const [isLiked, setIsLiked] = useState(false);
-  const [likesCount, setLikesCount] = useState(13);
+  const [likesCount, setLikesCount] = useState(initialLikesCount);
 
   const handleLikeButtonClick = () => {
     setLikesCount((prevCount) => (isLiked ? prevCount - 1 : prevCount + 1));
@@ -22,19 +22,17 @@ const PostLikes = ({ initialLikesCount }: PostLikesProps) => {
 
   return (
     <>
-      <div className=" m-[10px] flex items-center">
-        <button className="flex m-[0px] m-[auto] mr-[10px]">
+      <div className="m-[10px] flex items-center">
+        <button
+          className="flex m-[0px] m-[auto] mr-[10px]"
+          onClick={handleLikeButtonClick}
+        >
           <StyledImage
             src={isLiked ? "/heart-filled.png" : "/heart-empty.png"}
             alt="하트 이미지"
-            onClick={handleLikeButtonClick}
           />
         </button>
-        {likesCount === 0 ? (
-          <span className="w-[50px]"></span>
-        ) : (
-          <span className="w-[50px]">{likesCount}</span>
-        )}
+        {likesCount !== 0 && <span className="w-[50px]">{likesCount}</span>}
       </div>
     </>
   );
