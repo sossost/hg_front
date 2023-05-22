@@ -39,7 +39,7 @@ const FindUserIdPage: React.FC = () => {
     try {
       const response = await axios.get("/api/find-userid");
       if (response.status === 200) {
-        setResetMessage(`요청하신 아이디는 ${fetchUserId}입니다.`);
+        setResetMessage(`고객님의 아이디는 ${fetchUserId}입니다.`);
         setResetMessageColor("#167DD8");
       } else {
         setResetMessage(`이메일을 다시 한 번 확인해주세요.`);
