@@ -13,26 +13,24 @@ import NewPostPage from "./pages/post/NewPostPage";
 const queryClient = new QueryClient();
 function App() {
   return (
-
-        <RecoilRoot>
-    <Router>
-      <QueryClientProvider client={queryClient}>
-        <Layout>
-
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-                        <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/finduserid" element={<FindUserIdPage />} />
-                 <Route path="/findpassword" element={<FindPasswordPage />} />
-                      <Route path="/explore" element={<ExplorePage />} />
-            <Route path="/manage/newpost" element={<NewPostPage />} />
-            <Route path="/manage/newpost/:postId" element={<NewPostPage />} />
-          </Routes>
-        </Layout>
-      </QueryClientProvider>
-    </Router>
-              </RecoilRoot>
+    <RecoilRoot>
+      <Router>
+        <QueryClientProvider client={queryClient}>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignUpPage />} />
+              <Route path="/finduserid" element={<FindUserIdPage />} />
+              <Route path="/findpassword" element={<FindPasswordPage />} />
+              <Route path="/explore" element={<ExplorePage />} />
+              <Route path="/manage/newpost" element={<NewPostPage />} />
+              <Route path="/manage/newpost/:postId" element={<NewPostPage />} />
+            </Routes>
+          </Layout>
+        </QueryClientProvider>
+      </Router>
+    </RecoilRoot>
   );
 }
 
