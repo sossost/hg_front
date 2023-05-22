@@ -16,3 +16,7 @@ export const getAllPosts = () => {
 
   return axiosBase;
 };
+
+export const getPostById = (postId: string | undefined) => {
+  return {};
+};

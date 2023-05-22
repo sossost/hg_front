@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 type Props = {
   className?: string;
@@ -12,41 +12,43 @@ type Props = {
   disabled?: boolean;
 };
 
-const TextInput = ({
-  className,
-  placeholder,
-  onChange,
-  onFocus,
-  onBlur,
-  onKeyDown,
-  value,
-  ref,
-  disabled,
-}: Props) => {
-  const [text, setText] = useState(value);
+const TextInput = React.forwardRef(
+  (
+    {
+      className,
+      placeholder,
+      onChange,
+      onFocus,
+      onBlur,
+      onKeyDown,
+      value,
+      disabled,
+    }: Props,
+    ref?: any
+  ) => {
+    const [text, setText] = useState(value);
 
-  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const value = e.target.value;
-    setText(value);
-    onChange(value);
-  };
+    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+      const value = e.target.value;
+      setText(value);
+      onChange(value);
+    };
 
-  console.log(ref);
-
-  return (
-    <input
-      type="text"
-      value={text}
-      className={className}
-      placeholder={placeholder}
-      onChange={changeHandler}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      onKeyDown={onKeyDown}
-      disabled={disabled}
-      ref={ref}
-    />
-  );
-};
+    return (
+      <input
+        type="text"
+        value={text}
+        className={className}
+        placeholder={placeholder}
+        onChange={changeHandler}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onKeyDown={onKeyDown}
+        disabled={disabled}
+        ref={ref}
+      />
+    );
+  }
+);
 
 export default TextInput;
