@@ -25,7 +25,7 @@ const LoginPage = () => {
   } = useForm<FormData>();
 
   // 로그인 버튼 눌렀을 때 동작 정의
-  const onSubmit = async (data: FormData) => {
+  const onSubmitHandler = async (data: FormData) => {
     const userdata1 = { email: "wow@naver.com", id: 1, name: "lsh" };
     setUserData(() => userdata1);
     setIsLoggedIn(true);
@@ -73,7 +73,7 @@ const LoginPage = () => {
         <div>
           <form
             className="flex flex-col justify-center items-center gap-3"
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(onSubmitHandler)}
           >
             {/* 아이디 입력 */}
             <div>

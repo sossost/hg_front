@@ -20,7 +20,7 @@ const SignUpPage: React.FC = () => {
     watch,
   } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => {
+  const onSubmitHandler = (data: FormData) => {
     axios
       .post("/api/signup", data)
       .then((response) => {
@@ -72,7 +72,7 @@ const SignUpPage: React.FC = () => {
         {/* 아이디, 비밀번호, 비밀번호 확인, 닉네임, 이메일, 회원가입 버튼 */}
         <form
           className="flex flex-col justify-center items-center gap-5"
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onSubmitHandler)}
         >
           {/* 아이디 입력 */}
           <div className="flex flex-col">

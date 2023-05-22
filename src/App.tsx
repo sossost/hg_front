@@ -4,8 +4,8 @@ import Layout from "./components/Layout/Layout";
 import LoginPage from "./pages/auth/LoginPage";
 import { RecoilRoot } from "recoil";
 import SignUpPage from "./pages/auth/SignUpPage";
-import FindUserId from "./pages/auth/FindUserId";
-import FindPassword from "./pages/auth/FindPassword";
+import FindUserIdPage from "./pages/auth/FindUserIdPage";
+import FindPasswordPage from "./pages/auth/FindPasswordPage";
 
 function App() {
   return (
@@ -19,10 +19,10 @@ function App() {
             <Route path="/signup" element={<SignUpPage />} />
           </Routes>
           <Routes>
-            <Route path="/finduserid" element={<FindUserId />} />
+            <Route path="/finduserid" element={<FindUserIdPage />} />
           </Routes>
           <Routes>
-            <Route path="/findpassword" element={<FindPassword />} />
+            <Route path="/findpassword" element={<FindPasswordPage />} />
           </Routes>
         </Router>
       </Layout>
