@@ -25,7 +25,7 @@ const Layout = (props: LayoutProps) => {
   
     <UserLoginContext.Provider value={{ userLogin, setUserLogin }}>
     <Header/>
-    <div className=" w-full min-h-[70vh] flex flex-col items-center">
+    <div className=" w-full min-h-[70vh] mt-[80px] flex flex-col items-center">
     {props.children}
     </div>
     <Footer/>
