@@ -30,7 +30,7 @@ const FindPasswordPage: React.FC = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  // 임시 비밀번호 정상 발급 후 띄워주는 문구와 색상
+  // 임시 비밀번호 발급 버튼 누른 후 띄워주는 문구와 색상
   const [resetMessage, setResetMessage] = useState("");
   const [resetMessageColor, setResetMessageColor] = useState("");
 
