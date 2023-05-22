@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import LoginPage from "./pages/auth/LoginPage";
+import ViewPostPage from "./pages/post/ViewPostPage";
 import { RecoilRoot } from "recoil";
 import SignUpPage from "./pages/auth/SignUpPage";
 import FindUserIdPage from "./pages/auth/FindUserIdPage";
@@ -21,6 +22,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignUpPage />} />
+              <Route path="/:userId/:postId" element={<ViewPostPage />} />
               <Route path="/finduserid" element={<FindUserIdPage />} />
               <Route path="/findpassword" element={<FindPasswordPage />} />
               <Route path="/explore" element={<ExplorePage />} />
