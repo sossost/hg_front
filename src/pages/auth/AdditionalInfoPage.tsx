@@ -21,6 +21,8 @@ const AdditionalInfoPage: React.FC = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [saveError, setSaveError] = useState("");
 
+  const navigate = useNavigate();
+
   /** 아이디, 닉네임 입력시 서버 등록 요청 핸들러
    * 아이디 : userName, 닉네임 : nickname
    */
@@ -33,10 +35,10 @@ const AdditionalInfoPage: React.FC = () => {
       // 서버로 데이터 전송
       const response = await axios.post("/api/additional-info", data);
 
-      // 성공적으로 저장된 경우
+      // 아이디, 닉네임이 서버에 저장된 경우
       if (response.status === 200) {
-        // ## 저장 완료 메시지 표시
         console.log("데이터가 성공적으로 저장되었습니다.");
+        navigate("/api/v1/signup_complete");
       }
     } catch (error) {
       // 저장 실패 시 에러 처리
