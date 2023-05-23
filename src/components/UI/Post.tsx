@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import PostLikes from "./PostLikes"
 
 
 
@@ -18,6 +19,8 @@ const post = {
   content: '2015년 여름, 미술사 수업을 듣다가 불현듯 ',
   likes: 42,
   views: 1203,
+  isLike: true,
+  likedPersons: ['a', 'b', 'c']
 }
 
 const Post = () => {
@@ -39,7 +42,7 @@ const Post = () => {
           </div>
         <Link to={`/`}><span className=" flex flex-row justify-between items-center">{post.author.name}</span></Link>
         </div>
-        <div><img className=" hover:bg-slate-100 rounded-xl w-[35px] h-[35px] p-1 cursor-pointer" src={`/icon_heart_${like? 'full' : 'empty'}.svg`} onClick={()=> setLike(!like)}/></div>
+        <div className="w-[30%] flex flex-row justify-end"><PostLikes likesCount={post.likedPersons.length} isLiked={post.isLike} /></div>
         
       </div>
 

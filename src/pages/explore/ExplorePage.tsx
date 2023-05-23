@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useContext, useState } from 'react';
+import { useContext, useState, ChangeEvent } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Post from '../../components/UI/Post';
 
@@ -15,12 +15,12 @@ const searched = [
 
 const ExplorePage = () => {
   const [ searchInput, setSearchInput ] = useState('');
-  const handleChange = (e:any) => {
+  const handleChange = (e:ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value);
   }
 
   //탐색페이지 스타일링
-  const exploreSearchSectionStyle:string = " bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg top-[100px] border border-solid w-[90%] desktop:w-[50%] h-[60px] bg-white margin-box m-5 p-1 rounded-3xl shadow-md flex flex-row text-lg sticky z-10";
+  const exploreSearchSectionStyle:string = " bg-white bg-opacity-70 backdrop-filter backdrop-blur-lg top-[100px] border border-solid w-[90%] desktop:w-[50%] h-[60px] bg-white margin-box m-5 p-1 rounded-3xl shadow-md flex flex-row text-lg sticky z-10";
 
 
   // 유저 로그인 테스트용 코드
