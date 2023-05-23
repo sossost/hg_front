@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ type FormData = {
 };
 
 /** 유저 이메일 정보 가져오기
- * 비밀번호 찾기 완료시 안내 문구에 함께 띄워줄 것임
+ * 비밀번호 찾기 완료시 안내 문구 표시
  */
 const fetchUserEmail = async (userId: FormData) => {
   try {
@@ -32,7 +32,7 @@ const FindPasswordPage: React.FC = () => {
 
   // 임시 비밀번호 정상 발급 후 띄워주는 문구와 색상
   const [resetMessage, setResetMessage] = useState("");
-  const [resetMessageColor, setresetMessageColor] = useState("");
+  const [resetMessageColor, setResetMessageColor] = useState("");
 
   /** 아이디 입력시 임시 비밀번호 발급 요청 핸들러 */
   const submitHandler = async (data: FormData) => {
@@ -42,20 +42,20 @@ const FindPasswordPage: React.FC = () => {
       });
       if (response.status === 200) {
         setResetMessage(`임시 비밀번호를 ${fetchUserEmail}로 발급했습니다.`);
-        setresetMessageColor("#167DD8");
+        setResetMessageColor("#167DD8");
       } else {
-        setResetMessage("아이디를 다시 한 번 확인해주세요");
-        setresetMessageColor("#F14546");
+        setResetMessage("아이디를 다시 한 번 확인해주세요.");
+        setResetMessageColor("#F14546");
       }
     } catch (error) {
       console.log(error);
       setResetMessage("서버 오류로 임시 비밀번호 발급에 실패했습니다.");
-      setresetMessageColor("#F14546");
+      setResetMessageColor("#F14546");
     }
   };
 
   const navigate = useNavigate();
-  /** 로그인 하러 가기 버튼 클릭시 로그인 페이지로 연결해주는 핸들러 */
+  /** 로그인 페이지로 연결해주는 핸들러 */
   const loginClickHandler = () => {
     navigate("/login");
   };

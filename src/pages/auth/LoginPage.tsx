@@ -10,7 +10,7 @@ const LoginPage = () => {
 
   // 입력 데이터 형식 지정
   type FormData = {
-    userid: string;
+    userId: string;
     password: string;
   };
 
@@ -36,7 +36,7 @@ const LoginPage = () => {
 
       // 서버로 전송할 데이터 설정
       const payload = {
-        userid: data.userid,
+        userId: data.userId,
         password: data.password,
       };
 
@@ -78,16 +78,16 @@ const LoginPage = () => {
             {/* 아이디 입력 */}
             <div>
               <input
-                id="userid"
+                id="userId"
                 type="text"
                 placeholder="아이디 입력"
                 // 접근성을 위한 속성으로, 입력 필드의 유효성 검사 상태를 나타냄
                 aria-invalid={
-                  !isDirty ? undefined : errors.userid ? "true" : "false"
+                  !isDirty ? undefined : errors.userId ? "true" : "false"
                 }
-                // 1번째 매개변수 : userid라는 이름으로 입력 요소를 등록
+                // 1번째 매개변수 : userId라는 이름으로 입력 요소를 등록
                 // 2번재 매개변수 : 유효성 검사 규칙이 포함된 객체가 전달됨
-                {...register("userid", {
+                {...register("userId", {
                   required: "아이디는 필수 입력입니다.",
                   minLength: {
                     value: 4,
@@ -118,7 +118,7 @@ const LoginPage = () => {
                 aria-invalid={
                   !isDirty ? undefined : errors.password ? "true" : "false"
                 }
-                // 1번째 매개변수 : userid라는 이름으로 입력 요소를 등록
+                // 1번째 매개변수 : userId라는 이름으로 입력 요소를 등록
                 // 2번재 매개변수 : 유효성 검사 규칙이 포함된 객체가 전달됨
                 {...register("password", {
                   required: "비밀번호는 필수 입력입니다.",
