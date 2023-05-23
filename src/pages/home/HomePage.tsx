@@ -172,7 +172,7 @@ const user = {
 const HomePage = () => {
   //홈페이지 스타일링
   const homeIntroduceStyle:string = " w-full flex h-[400px] flex-row justify-center desktop:justify-end items-end flex-wrap relative mb-[150px] ";
-  const homeIntroduceTxtStyle:string = " w-[80%] desktop:w-[45%] h-[220px] bg-white absolute margin-box m-8 p-4 top-[75%] desktop:top-[50%] rounded-2xl shadow-lg flex flex-col z-500 justify-center items-center";
+  const homeIntroduceTxtStyle:string = " w-[80%] desktop:w-[45%] h-[220px] bg-white absolute margin-box m-8 p-4 top-[75%] desktop:top-[50%] rounded-2xl shadow-lg flex flex-col z-20 justify-center items-center";
   const homeIntroduceTxtBtnStyle:string = "w-[200px] h-[30px] bg-[#73BBFB] text-base font-bold rounded-3xl transition-colors hover:bg-[#0C94E8] text-white my-3";
   const homeFurtherIntroduceStyle:string = " w-full flex h-[400px] flex-row-reverse justify-center desktop:justify-around items-center flex-wrap z-100 relative ";
   const homeWelcomeTxtStyle:string = " border border-solid w-[90%] desktop:w-[40%] h-auto bg-white margin-box m-8 p-4 rounded-3xl shadow-lg flex text-lg flex-col justify-center z-20 items-center";
@@ -189,6 +189,7 @@ const HomePage = () => {
         <div className=" w-full flex flex-col items-center">
           <div className={`${homeIntroduceStyle}`}>
             <div className="w-full absolute overflow-hidden">
+            <div className="absolute bottom-0 w-full h-[25%] bg-gradient-to-b from-transparent to-white pointer-events-none z-10"></div>
               <BgSky>
                 <BgPlane src="/home/bg_plane.PNG"/>
                 <BgPlaneTrail src="/home/bg_plane_trail.PNG"/>
