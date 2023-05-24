@@ -133,14 +133,9 @@ const Editor = ({ post }: { post: any }) => {
           [{ header: [1, 2, 3, 4, 5, 6, false] }],
           // [{ font: [] }],
           [{ align: [] }],
-          ["bold", "italic", "underline", "strike", "blockquote"],
-          // [{ list: "ordered" }, { list: "bullet" }, "link"],
-          [
-            {
-              color: [],
-            },
-            { background: [] },
-          ],
+          ["bold", "underline", "blockquote"],
+          [{ list: "bullet" }],
+          [],
           ["image"],
           // ["clean"],
         ],
@@ -154,7 +149,7 @@ const Editor = ({ post }: { post: any }) => {
   return (
     <>
       <form
-        className="sm:w-full lg:w-[1024px] flex flex-col justify-center items-center m-auto"
+        className="sm:w-full lg:w-[1024px] h-screen flex flex-col justify-center items-center m-auto overflow-hidden"
         onSubmit={handleSubmit(postSubmitHandler)}
       >
         <EditorModal
@@ -173,14 +168,14 @@ const Editor = ({ post }: { post: any }) => {
         </Modal>
         <TextInput
           value={newTitle}
-          className="h-[49px] w-full lg:w-[1024px] px-[15px] text-[20px] focus:outline-none"
+          className="fixed top-[60px] h-[50px] w-[calc(100%-40px)] lg:w-[1024px] text-[20px] focus:outline-none z-[60] border-b placeholder:text-[rgb(0,0,0,0.3)]"
           onChange={(value) => {
             setNewTitle(value);
           }}
           ref={titleRef}
           placeholder="제목을 입력하세요"
         />
-        <div className="h-[39px] w-full lg:w-[1024px] flex items-center px-[15px] text-[14px]">
+        <div className="fixed top-[110px] h-[40px] z-[60] w-[calc(100%-40px)] lg:w-[1024px] flex items-center text-[14px] py-[15px] text-[rgb(0,0,0,0.6)]">
           <TripLocation
             setNewLocation={setNewLocation}
             newLocation={newLocation}
@@ -203,17 +198,17 @@ const Editor = ({ post }: { post: any }) => {
           ref={quillRef}
           placeholder="당신의 여행기를 적어보세요"
         />
-        <div className="flex w-full pb-[100px]">
+        <div className="fixed bottom-[80px] z-[60] flex w-[calc(100%-40px)]">
           <TextInput
             value={newHashTag}
-            className="px-[15px] text-[12px] w-full focus:outline-none"
+            className="text-[12px] w-full focus:outline-none"
             onChange={(value) => {
               setNewHashTag(value);
             }}
             placeholder="#해시태그 입력"
           />
         </div>
-        <div className="box-border flex justify-between lg:justify-end items-center fixed border-t border-t-[#ccc] bottom-0 bg-[#ffffff] h-[69px] w-full px-[15px] lg:w-[1024px]">
+        <div className="fixed z-[99] box-border flex justify-between lg:justify-end items-center border-t border-t-[#ccc] bottom-0 bg-[#ffffff] h-[60px] w-full px-[15px] lg:w-[1024px]">
           <BackBtn
             className="p-[15px] lg:hidden"
             message="작성중인 글은 모두 없어집니다. 그래도 뒤로가시겠습니까?"
