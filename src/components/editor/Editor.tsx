@@ -14,6 +14,7 @@ import calendarIcon from "../../assets/calendarIcon.png";
 import { lockScroll, openScroll } from "../../utils/lock-scroll";
 
 import "../../styles/Editor.css";
+import { uploadImage } from "../../api/api-img";
 
 // import { getS3PresignedURL, uploadImage } from "../../api/api-img";
 // import Minio from "minio";
@@ -58,7 +59,10 @@ const Editor = ({ post }: { post: any }) => {
   const [newHashTag, setNewHashTag] = useState<string>(
     !post ? "" : post?.hashTag
   );
-  const [isPublic, setIsPublic] = useState<boolean>(
+  const [newThumbnail, setNewThumbnail] = useState<string>(
+    !post ? "" : post?.thumbnail
+  );
+  const [isHidden, setIsHidden] = useState<boolean>(
     !post ? false : post.isPublic
   );
 
@@ -76,18 +80,28 @@ const Editor = ({ post }: { post: any }) => {
     input.click();
 
     input.onchange = async () => {
-      // const [file] = input.files;
-      // // S3 Presigned URL로 업로드하고 image url 받아오기
-      // const { preSignedPutUrl: presignedURL, readObjectUrl: imageURL } =
-      //   await getS3PresignedURL(file.name);
-      // await uploadImage(presignedURL, file);
-      // // 현재 커서 위치에 이미지를 삽입하고 커서 위치를 +1 하기
-      // const quill = quillRef.current?.getEditor();
-      // if (quill) {
-      //   const range = quill.getSelection();
-      //   quill.insertEmbed(range?.index || 0, "image", imageURL);
-      //   quill.setSelection((range?.index || 0) + 1, (range?.index || 0) + 1);
-      // }
+      const file = input.files && input.files[0];
+      console.log(file);
+
+      if (file) {
+        try {
+          const formData = new FormData();
+          formData.append("image", file);
+          console.log(formData.get("image"));
+          const imageURL = await uploadImage(formData);
+          const quill = quillRef.current?.getEditor();
+          if (quill) {
+            const range = quill.getSelection();
+            quill.insertEmbed(range?.index || 0, "image", imageURL);
+            quill.setSelection(
+              (range?.index || 0) + 1,
+              (range?.index || 0) + 1
+            );
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      }
     };
   };
 
@@ -114,11 +128,13 @@ const Editor = ({ post }: { post: any }) => {
 
     const data = {
       title: newTitle,
-      location: newLocation,
-      date: newDate,
       content: escapeContent,
-      hashTag: newHashTag.trim().split(/(#[^\s#]+)/g),
-      isPublic,
+      location: newLocation,
+      thumbnail: newThumbnail,
+      gps: "",
+      hashtag: newHashTag.trim().split(/(#[^\s#]+)/g),
+      hidden: isHidden,
+      date: newDate,
     };
     console.log(data);
 
@@ -149,15 +165,15 @@ const Editor = ({ post }: { post: any }) => {
   return (
     <>
       <form
-        className="sm:w-full lg:w-[1024px] h-screen flex flex-col justify-center items-center m-auto overflow-hidden"
+        className="sm:w-full lg:w-[1024px] h-screen flex flex-col justify-center items-center m-auto overflow-hidden bg-[#ffffff]"
         onSubmit={handleSubmit(postSubmitHandler)}
       >
         <EditorModal
           isModal={isModal}
           isSubmitting={isSubmitting}
           setIsModal={setIsModal}
-          isPublic={isPublic}
-          setIsPublic={setIsPublic}
+          isHidden={isHidden}
+          setIsHidden={setIsHidden}
         />
         <Modal
           visible={isInvalidModal}
@@ -168,14 +184,14 @@ const Editor = ({ post }: { post: any }) => {
         </Modal>
         <TextInput
           value={newTitle}
-          className="fixed top-[60px] h-[50px] w-[calc(100%-40px)] lg:w-[1024px] text-[20px] focus:outline-none z-[60] border-b placeholder:text-[rgb(0,0,0,0.3)]"
+          className="fixed top-[60px] h-[50px] w-[calc(100%-40px)] desktop:w-[984px] text-[20px] focus:outline-none z-[60] border-b placeholder:text-[rgb(0,0,0,0.3)]"
           onChange={(value) => {
             setNewTitle(value);
           }}
           ref={titleRef}
           placeholder="제목을 입력하세요"
         />
-        <div className="fixed top-[110px] h-[40px] z-[60] w-[calc(100%-40px)] lg:w-[1024px] flex items-center text-[14px] py-[15px] text-[rgb(0,0,0,0.6)]">
+        <div className="fixed top-[110px] h-[40px] z-[60] w-[calc(100%-40px)] desktop:w-[984px] flex items-center text-[14px] py-[15px] text-[rgb(0,0,0,0.6)]">
           <TripLocation
             setNewLocation={setNewLocation}
             newLocation={newLocation}
@@ -198,7 +214,7 @@ const Editor = ({ post }: { post: any }) => {
           ref={quillRef}
           placeholder="당신의 여행기를 적어보세요"
         />
-        <div className="fixed bottom-[80px] z-[60] flex w-[calc(100%-40px)]">
+        <div className="fixed bottom-[80px] z-[60] flex w-[calc(100%-40px)] desktop:w-[984px]">
           <TextInput
             value={newHashTag}
             className="text-[12px] w-full focus:outline-none"
@@ -208,9 +224,9 @@ const Editor = ({ post }: { post: any }) => {
             placeholder="#해시태그 입력"
           />
         </div>
-        <div className="fixed z-[99] box-border flex justify-between lg:justify-end items-center border-t border-t-[#ccc] bottom-0 bg-[#ffffff] h-[60px] w-full px-[15px] lg:w-[1024px]">
+        <div className="fixed z-[99] box-border flex justify-between desktop:justify-end items-center border-t border-t-[#ccc] bottom-0 bg-[#ffffff] h-[65px] w-full px-[15px] desktop:w-[1024px]">
           <BackBtn
-            className="p-[15px] lg:hidden"
+            className="p-[15px] desktop:hidden"
             message="작성중인 글은 모두 없어집니다. 그래도 뒤로가시겠습니까?"
           />
           <Button
