@@ -1,13 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { useRecoilState } from "recoil";
 import { isLoggedInState, userDataState } from "../../store/recoilAtoms";
 import { baseApi } from "../../api/api";
 
 const LoginPage = () => {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
-  const [userData, setUserData] = useRecoilState(userDataState);
+  // const [userData, setUserData] = useRecoilState(userDataState);
 
   // 입력 데이터 형식 지정
   type FormData = {
@@ -42,6 +41,7 @@ const LoginPage = () => {
 
       // 로그인 요청 보내기
       const response = await baseApi.post("/v1/auths/login", payload);
+      console.log(response);
       if (response) {
         alert("로그인이 완료되었습니다!");
         navigate("/");
@@ -122,33 +122,15 @@ const LoginPage = () => {
                 aria-invalid={
                   !isDirty ? undefined : errors.password ? "true" : "false"
                 }
-                // 1번째 매개변수 : userName라는 이름으로 입력 요소를 등록
+                // 1번째 매개변수 : password라는 이름으로 입력 요소를 등록
                 // 2번재 매개변수 : 유효성 검사 규칙이 포함된 객체가 전달됨
                 {...register("password", {
-                  required: "비밀번호는 필수 입력입니다.",
-                  // minLength: {
-                  //   value: 8,
-                  //   message: "비밀번호는 최소 8자 이상이어야 합니다.",
-                  // },
-                  // maxLength: {
-                  //   value: 20,
-                  //   message: "비밀번호는 최대 20자까지 가능합니다.",
-                  // },
-                  // pattern: {
-                  //   value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-                  //   message:
-                  //     "비밀번호는 영문자와 숫자를 조합하여 입력해야 합니다.",
-                  // },
+                  required: true,
                 })}
                 className="p-[10px] border-[#73BBFB] border-[2px] 
               w-[300px] h-[55px] rounded-[10px]
               focus:outline-[#167DD8] focus:outline-[2px]"
               />
-              {/* {errors.password && (
-                <span className="mt-[5px] text-[14.5px] text-[#167DD8]">
-                  {errors.password.message}
-                </span>
-              )} */}
             </div>
             {/* 로그인 버튼 */}
             <div>
