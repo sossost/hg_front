@@ -13,6 +13,7 @@ import NewPostPage from "./pages/post/NewPostPage";
 import EditProfilePage from "./pages/profile/EditProfilePage";
 import FollowerPage from "./pages/social/FollowerPage";
 import FollowingPage from "./pages/social/FollowingPage";
+import ScrollToTop from "./components/Layout/ScrollToTop";
 
 const queryClient = new QueryClient();
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Router>
         <QueryClientProvider client={queryClient}>
           <Layout>
+            <ScrollToTop/>
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<LoginPage />} />
