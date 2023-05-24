@@ -4,9 +4,11 @@ import BackBtn from "../../components/UI/BackBtn";
 import InputResetIcon from "../../assets/inputResetIcon.png";
 import CheckIcon from "../../assets/checkIcon.png";
 
+import { updateUserProfile } from "../../api/api-user";
+
 type FormValue = {
-  userName: string;
-  introduction: string;
+  nickName: string;
+  intro: string;
 };
 
 const EditProfilePage = () => {
@@ -20,12 +22,13 @@ const EditProfilePage = () => {
     reset,
   } = useForm<FormValue>();
 
-  const userProfile = { userName: "", introduction: "" };
-  const { userName, introduction } = userProfile;
+
+  const userProfile = { nickName: "", intro: "" };
+  const { nickName, intro } = userProfile;
 
   const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
-  const [userNameCount, setUserNameCount] = useState(0);
-  const [introductionCount, setIntroductionCount] = useState(0);
+  const [nickNameCount, setNickNameCount] = useState(0);
+  const [introCount, setIntroCount] = useState(0);
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -58,25 +61,22 @@ const EditProfilePage = () => {
   const userNameCountChangeHandler = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setUserNameCount(e.target.value.length);
+    setNickNameCount(e.target.value.length);
   };
 
   /** 자기소개의 글자수를 실시간으로 카운팅하는 핸들러 */
-  const introductionCountChangeHandler = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setIntroductionCount(e.target.value.length);
+  const introCountChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIntroCount(e.target.value.length);
   };
 
   /** 프로필 폼 제출 핸들러 */
   const onSubmitHandler = (data: FormValue) => {
-    const payload = {
-      userName: data.userName,
-      introduction: data.introduction,
-    };
+
+    const nickName = data.nickName;
+    const intro = data.intro;
 
     try {
-      //엑시오스
+      updateUserProfile(nickName, intro);
     } catch (err) {}
   };
 
@@ -100,7 +100,8 @@ const EditProfilePage = () => {
             className="w-[100px] h-[100px] object-cover rounded-full"
             src={uploadedImageUrl ? uploadedImageUrl : "/123.jpeg"}
             alt={
-              uploadedImageUrl ? `${userName}'s profile image` : "default image"
+
+              uploadedImageUrl ? `${nickName}'s profile image` : "default image"
             }
           />
           <span onClick={() => fileInputRef.current?.click()}>사진 수정</span>
@@ -116,18 +117,19 @@ const EditProfilePage = () => {
           <div className="flex flex-col">
             <div className="flex justify-between items-center w-full py-[3px] border-b">
               <input
-                defaultValue={userName}
+                defaultValue={nickName}
                 type="text"
                 placeholder="닉네임 입력"
                 className="flex-grow outline-none"
                 maxLength={20}
                 // 접근성을 위한 속성으로, 입력 필드의 유효성 검사 상태를 나타냄
                 aria-invalid={
-                  !isDirty ? undefined : errors.userName ? "true" : "false"
+
+                  !isDirty ? undefined : errors.nickName ? "true" : "false"
                 }
                 // 1번째 매개변수 : userid라는 이름으로 입력 요소를 등록
                 // 2번재 매개변수 : 유효성 검사 규칙이 포함된 객체가 전달됨
-                {...register("userName", {
+                {...register("nickName", {
                   required: "닉네임을 입력해주세요.",
                   minLength: {
                     value: 4,
@@ -150,7 +152,7 @@ const EditProfilePage = () => {
                 className="flex justify-end items-center w-[24px] h-[24px]"
                 onClick={() => {
                   reset();
-                  setUserNameCount(0);
+                  setNickNameCount(0);
                 }}
               >
                 <img
@@ -161,31 +163,31 @@ const EditProfilePage = () => {
               </div>
             </div>
             <div className="text-[14px]">
-              {errors.userName && (
+              {errors.nickName && (
                 <span className="float-left text-[rgb(255,0,0,0.5)]">
-                  {errors.userName.message?.toString()}
+                  {errors.nickName.message?.toString()}
                 </span>
               )}
               <span className="float-right text-[rgb(210,210,210)]">
-                {userNameCount}/20
+                {nickNameCount}/20
               </span>
             </div>
           </div>
           <div className="flex flex-col">
             <div className="flex justify-between items-center w-full py-[5px] border-b">
               <input
-                defaultValue={introduction}
+                defaultValue={intro}
                 type="text"
                 className="flex-grow outline-none"
                 placeholder="소개 입력"
-                {...register("introduction", {})}
-                onChange={introductionCountChangeHandler}
+                {...register("intro", {})}
+                onChange={introCountChangeHandler}
               />
               <div
                 className="flex justify-end items-center w-[24px] h-[24px]"
                 onClick={() => {
                   reset();
-                  setIntroductionCount(0);
+                  setIntroCount(0);
                 }}
               >
                 <img
@@ -196,7 +198,7 @@ const EditProfilePage = () => {
               </div>
             </div>
             <div className="flex justify-end text-[rgb(210,210,210)] text-[14px]">
-              <span>{introductionCount}/60</span>
+              <span>{introCount}/60</span>
             </div>
           </div>
         </div>
