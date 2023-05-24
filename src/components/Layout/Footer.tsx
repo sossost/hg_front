@@ -1,4 +1,5 @@
 import React from 'react';
+import Logo from '../../components/UI/Logo';
 
 
 const Footer = () => {
@@ -11,7 +12,7 @@ const Footer = () => {
   return (
     <div className={footerStyle.join('')}>
       <div className={footerContainerStyle.join('')}>
-        <div className="flex justify-self-center w-[100px] bg-white"></div>
+        <div className="flex justify-self-center w-[500px]"><Logo color="#cbd5e1" width={120}/></div>
       </div>
     </div>
   )

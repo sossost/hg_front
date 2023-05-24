@@ -2,6 +2,9 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    colors: {
+      mainColor: "#91BBF8",
+    },
     extend: {
       keyframes: {
         slideUp: {

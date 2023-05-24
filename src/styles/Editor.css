@@ -5,6 +5,14 @@
  * Copyright (c) 2013, salesforce.com
  */
 .quill {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 55;
+  background-color: white;
+  height: 100vh;
+  width: 100vw;
+
   @media (max-width: 1024px) {
     width: 100%;
   }
@@ -15,6 +23,7 @@
 }
 
 .ql-container {
+  position: absolute;
   box-sizing: border-box;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 13px;
@@ -40,12 +49,17 @@
   padding: 0;
 }
 .ql-editor {
+  position: fixed;
+  top: 150px;
+  width: calc(100% - 40px);
+  min-height: 400px;
+  font-size: 14px;
   box-sizing: border-box;
   line-height: 1.42;
-  height: 100%;
+  height: calc(100vh - 260px);
   outline: none;
   overflow-y: auto;
-  padding: 12px 15px;
+  padding: 0 20px;
   tab-size: 4;
   -moz-tab-size: 4;
   text-align: left;
@@ -397,13 +411,13 @@
   text-align: right;
 }
 .ql-editor.ql-blank::before {
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.3);
   content: attr(data-placeholder);
   font-style: italic;
-  left: 15px;
+  left: 20px;
   pointer-events: none;
   position: absolute;
-  right: 15px;
+  right: 20px;
 }
 .ql-snow.ql-toolbar:after,
 .ql-snow .ql-toolbar:after {
@@ -966,11 +980,12 @@
 }
 
 .ql-toolbar {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 50px;
   border: none;
+  background-color: white;
   border-bottom: 1px solid #ccc;
-}
-
-.ql-editor {
-  min-height: 400px;
-  font-size: 14px;
 }
