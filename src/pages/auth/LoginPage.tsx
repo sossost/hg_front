@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import { isLoggedInState, userDataState } from "../../store/recoilAtoms";
+import { baseApi } from "../../api/api";
 
 const LoginPage = () => {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
@@ -10,7 +11,7 @@ const LoginPage = () => {
 
   // 입력 데이터 형식 지정
   type FormData = {
-    userId: string;
+    userName: string;
     password: string;
   };
 
@@ -26,22 +27,19 @@ const LoginPage = () => {
 
   // 로그인 버튼 눌렀을 때 동작 정의
   const onSubmitHandler = async (data: FormData) => {
-    const userdata1 = { email: "wow@naver.com", id: 1, name: "lsh" };
-    setUserData(() => userdata1);
+    // const userdata1 = { email: "wow@naver.com", id: 1, name: "lsh" };
+    // setUserData(() => userdata1);
     setIsLoggedIn(true);
     console.log(isLoggedIn, userData);
     try {
-      // 서버 URL 설정
-      const url = "";
-
       // 서버로 전송할 데이터 설정
       const payload = {
-        userId: data.userId,
+        userName: data.userName,
         password: data.password,
       };
 
       // 로그인 요청 보내기
-      const response = await axios.post(url, payload);
+      const response = await baseApi.post("/v1/auths/login", payload);
 
       // Access token, Refresh token 발급 후 로컬스토리지에 저장
       const { accessToken, refreshToken } = response.data;
@@ -78,16 +76,16 @@ const LoginPage = () => {
             {/* 아이디 입력 */}
             <div>
               <input
-                id="userId"
+                id="userName"
                 type="text"
                 placeholder="아이디 입력"
                 // 접근성을 위한 속성으로, 입력 필드의 유효성 검사 상태를 나타냄
                 aria-invalid={
-                  !isDirty ? undefined : errors.userId ? "true" : "false"
+                  !isDirty ? undefined : errors.userName ? "true" : "false"
                 }
-                // 1번째 매개변수 : userId라는 이름으로 입력 요소를 등록
+                // 1번째 매개변수 : userName라는 이름으로 입력 요소를 등록
                 // 2번재 매개변수 : 유효성 검사 규칙이 포함된 객체가 전달됨
-                {...register("userId", {
+                {...register("userName", {
                   required: "아이디는 필수 입력입니다.",
                   minLength: {
                     value: 4,
@@ -118,28 +116,33 @@ const LoginPage = () => {
                 aria-invalid={
                   !isDirty ? undefined : errors.password ? "true" : "false"
                 }
-                // 1번째 매개변수 : userId라는 이름으로 입력 요소를 등록
-                // 2번재 매개변수 : 유효성 검사 규칙이 포함된 객체가 전달됨
-                {...register("password", {
-                  required: "비밀번호는 필수 입력입니다.",
-                  minLength: {
-                    value: 8,
-                    message: "비밀번호는 최소 8자 이상이어야 합니다.",
-                  },
-                  maxLength: {
-                    value: 20,
-                    message: "비밀번호는 최대 20자까지 가능합니다.",
-                  },
-                  pattern: {
-                    value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-                    message:
-                      "비밀번호는 영문자와 숫자를 조합하여 입력해야 합니다.",
-                  },
-                })}
+                // // 1번째 매개변수 : userName라는 이름으로 입력 요소를 등록
+                // // 2번재 매개변수 : 유효성 검사 규칙이 포함된 객체가 전달됨
+                // {...register("password", {
+                //   required: "비밀번호는 필수 입력입니다.",
+                //   minLength: {
+                //     value: 8,
+                //     message: "비밀번호는 최소 8자 이상이어야 합니다.",
+                //   },
+                //   maxLength: {
+                //     value: 20,
+                //     message: "비밀번호는 최대 20자까지 가능합니다.",
+                //   },
+                //   pattern: {
+                //     value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                //     message:
+                //       "비밀번호는 영문자와 숫자를 조합하여 입력해야 합니다.",
+                //   },
+                // })}
                 className="p-[10px] border-[#73BBFB] border-[2px] 
               w-[300px] h-[55px] rounded-[10px]
               focus:outline-[#167DD8] focus:outline-[2px]"
               />
+              {errors.password && (
+                <span className="mt-[5px] text-[14.5px] text-[#167DD8]">
+                  {errors.password.message}
+                </span>
+              )}
             </div>
             {/* 로그인 버튼 */}
             <div>
