@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 // 입력 데이터 형식 지정
 type FormData = {
@@ -20,13 +21,16 @@ const SignUpPage: React.FC = () => {
     watch,
   } = useForm<FormData>();
 
+  const navigate = useNavigate();
+
   const onSubmitHandler = (data: FormData) => {
     axios
       .post("/api/signup", data)
       .then((response) => {
-        // 회원가입 성공 처리 로직
+        // 회원가입 성공 시 회원가입 완료 페이지로 이동
         if (response.status === 200) {
           console.log("회원가입이 성공적으로 완료되었습니다.");
+          navigate("/api/signup_complete");
         } else {
           console.log("회원가입에 실패했습니다.");
         }

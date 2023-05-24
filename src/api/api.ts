@@ -1,25 +1,7 @@
 import axios from "axios";
 
-/** 헤더에 토큰을 첨부하는 axios 인스턴스 */
-export const axiosBase = axios.create({
-  baseURL: `http://${window.location.hostname}:5000/`,
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-  },
-});
-
-/** 일반 axios 인스턴스 */
-export const axiosBaseWithToken = axios.create({
-  baseURL: `http://${window.location.hostname}:5000/`,
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-  },
-});
-
 // Axios 인스턴스 생성
-const baseApi = axios.create({
+export const baseApi = axios.create({
   baseURL: `http://${window.location.hostname}:9999/`,
 });
 
