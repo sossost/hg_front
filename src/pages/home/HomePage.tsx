@@ -80,6 +80,18 @@ const BgSky =styled.div`
   background-position: center;
   background-size: cover;
 `
+const BgSky2 =styled.div`
+  width: 2000px;
+  height: 500px;
+  background-image: url('/home/bg_sky.PNG');
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  background-size: cover;
+  animation-direction: alternate;
+`
 const BgCloud1 =styled.div`
   top: 30%;
   left:-20%;
@@ -90,6 +102,7 @@ const BgCloud1 =styled.div`
   background-repeat: repeat-x;
   position: absolute;
   animation: ${moveSlowlyRight} 300s infinite linear;
+  animation-direction: alternate;
 `
 const BgCloud2 =styled.div`
   width: 1500px;
@@ -99,6 +112,7 @@ const BgCloud2 =styled.div`
   background-repeat: repeat-x;
   position: absolute;
   animation: ${moveSlowlyLeftforCloud2} 250s infinite linear;
+  animation-direction: alternate;
 `
 const BgCloud3 =styled.div`
   top: 10%;
@@ -109,6 +123,7 @@ const BgCloud3 =styled.div`
   background-repeat: repeat-x;
   position: absolute;
   animation: ${moveSlowlyRightforCloud3} 300s infinite linear;
+  animation-direction: alternate;
 `
 const BgCloud4 =styled.div`
   top: 0;
@@ -120,21 +135,21 @@ const BgCloud4 =styled.div`
   background-repeat: repeat-x;
   position: absolute;
   animation: ${moveSlowlyLeftforCloud4} 250s infinite linear;
+  animation-direction: alternate;
 `
 const BgPlane =styled.img`
   width: 150px;
   position: absolute;
   top: 40%;
   left: 70%;
-  animation: ${moveSlowlyLeft} 350s infinite linear;
+  animation: ${moveSlowlyLeft} 200s infinite linear;
 `
 const BgPlaneTrail =styled.img`
   width: 350px;
   position: absolute;
   top: 34%;
   left: 74%;
-  animation: ${planeTrail} 350s 1 linear;
-  animation-direction: alternate;
+  animation: ${planeTrail} 200s infinite linear;
   opacity: 0;
 `
 const BgPerson =styled.img`
@@ -157,10 +172,10 @@ const user = {
 const HomePage = () => {
   //홈페이지 스타일링
   const homeIntroduceStyle:string = " w-full flex h-[400px] flex-row justify-center desktop:justify-end items-end flex-wrap relative mb-[150px] ";
-  const homeIntroduceTxtStyle:string = " w-[80%] desktop:w-[45%] h-[220px] bg-white absolute margin-box m-8 p-4 top-[75%] desktop:top-[50%] rounded-2xl shadow-lg flex flex-col z-500 justify-center items-center";
+  const homeIntroduceTxtStyle:string = " w-[80%] desktop:w-[45%] h-[220px] bg-white absolute margin-box m-8 p-4 top-[75%] desktop:top-[50%] rounded-2xl shadow-lg flex flex-col z-20 justify-center items-center";
   const homeIntroduceTxtBtnStyle:string = "w-[200px] h-[30px] bg-[#73BBFB] text-base font-bold rounded-3xl transition-colors hover:bg-[#0C94E8] text-white my-3";
   const homeFurtherIntroduceStyle:string = " w-full flex h-[400px] flex-row-reverse justify-center desktop:justify-around items-center flex-wrap z-100 relative ";
-  const homeWelcomeTxtStyle:string = " border border-solid w-[90%] desktop:w-[40%] h-auto bg-white margin-box m-8 p-4 rounded-3xl shadow-lg flex text-lg flex-col justify-center items-center";
+  const homeWelcomeTxtStyle:string = " border border-solid w-[90%] desktop:w-[40%] h-auto bg-white margin-box m-8 p-4 rounded-3xl shadow-lg flex text-lg flex-col justify-center z-20 items-center";
 
 
   // 유저 로그인 테스트용 코드
@@ -174,6 +189,7 @@ const HomePage = () => {
         <div className=" w-full flex flex-col items-center">
           <div className={`${homeIntroduceStyle}`}>
             <div className="w-full absolute overflow-hidden">
+            <div className="absolute bottom-0 w-full h-[25%] bg-gradient-to-b from-transparent to-white pointer-events-none z-10"></div>
               <BgSky>
                 <BgPlane src="/home/bg_plane.PNG"/>
                 <BgPlaneTrail src="/home/bg_plane_trail.PNG"/>
@@ -191,6 +207,7 @@ const HomePage = () => {
             </div>
           </div>
           <div className={`${homeFurtherIntroduceStyle}`}>
+            
             <div className="  w-[80%] desktop:w-[40%] h-[300px]">
 
             </div>
@@ -210,6 +227,21 @@ const HomePage = () => {
 
       ) : (
         <div className=" w-full flex flex-col items-center">
+          <div className=" w-full flex flex-col items-center relative">
+            <div className="w-full h-[300px] absolute overflow-hidden">
+              <div className="absolute bottom-0 w-full h-[40%] bg-gradient-to-b from-transparent to-white pointer-events-none z-10"></div>
+              <div className="absolute top-[-200px]">
+              <BgSky2>
+                <BgPlane src="/home/bg_plane.PNG"/>
+                <BgPlaneTrail src="/home/bg_plane_trail.PNG"/>
+                <BgCloud1></BgCloud1>
+                <BgCloud2></BgCloud2>
+                <BgCloud3></BgCloud3>
+                <BgCloud4></BgCloud4>
+              </BgSky2>
+              </div>
+            </div>
+          </div>
           <div className={`${homeWelcomeTxtStyle}`}>
             <div className=" w-[100px] h-[100px] rounded-full bg-slate-100 m-5 overflow-hidden shadow-md">
             <img className=" w-full h-full object-cover" src={user.thumbnail}/>
@@ -220,7 +252,7 @@ const HomePage = () => {
           </div>
           <div className=" text-[#73BBFB] w-full h-[80px] mt-5 flex flex-col justify-center items-center text-lg text-center">
           <div className="  translate-y-4 w-full border-b border-[0.5px] solid"></div>
-          <p className=" bg-white z-30 px-5">{user.name}님이 구독중인 사람들의 스케치</p>
+          <p className=" bg-white z-10 px-5">{user.name}님이 구독중인 사람들의 스케치</p>
           </div>
           {user.following.length === 0 ? (
               <div className="w-full h-[100px] flex flex-col justify-center static items-center">
@@ -241,7 +273,7 @@ const HomePage = () => {
 
           <div className=" text-[#73BBFB] w-full h-[80px] mt-5 flex flex-col justify-center items-center text-lg text-center">
           <div className="  translate-y-4 w-full border-b border-[0.5px] solid"></div>
-          <p className=" bg-white z-30 px-5">요즘 뜨는 스케치</p>
+          <p className=" bg-white z-10 px-5">요즘 뜨는 스케치</p>
           </div>
           <div className="w-full flex flex-row flex-wrap justify-center desktop:justify-start static items-start">
             <Post />

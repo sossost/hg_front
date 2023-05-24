@@ -32,18 +32,18 @@ const PostLikes = ({ likesCount, isLiked }: PostLikesProps) => {
     <>
       <div className="m-[10px] flex items-center">
         <button
-          className="flex m-[0px] m-[auto] mr-[10px]"
+          className="flex m-[auto] mr-[10px]"
           onClick={handleLikeButtonClick}
         >
           <LikeStyledImage
             // currentIsLiked (현재 라이크 유무) true이면 꽉찬 하트 / false면 빈 하트의 이미지 로딩
-            src={currentIsLiked ? "/heart-filled.png" : "/heart-empty.png"}
+            src={currentIsLiked ? "/icon_heart_full.svg" : "/icon_heart_empty.svg"}
             alt="하트 이미지"
           />
         </button>
         {/* 좋아요 개수가 0이면 좋아요 개수를 랜더링 하지 않는다. 1개 이상이면 랜더링한다. */}
         {currentLikesCount !== 0 && (
-          <span className="w-[50px]">{currentLikesCount}</span>
+          <span>{currentLikesCount}</span>
         )}
       </div>
     </>

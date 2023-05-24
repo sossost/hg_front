@@ -32,7 +32,10 @@ const Comment = () => {
                 <span className="text-[8px]">2023.05.18</span>
               </div>
               <div>
-                <span>댓글 내용</span>
+                <span>
+                  댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글
+                  내용댓글 내용댓글 내용댓글 내용댓
+                </span>
               </div>
             </div>
           </div>
