@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import BackBtn from "../../components/UI/BackBtn";
 import InputResetIcon from "../../assets/inputResetIcon.png";
 import CheckIcon from "../../assets/checkIcon.png";
+
 import { updateUserProfile } from "../../api/api-user";
 
 type FormValue = {
@@ -20,6 +21,7 @@ const EditProfilePage = () => {
     formState: { isSubmitting, isDirty, errors },
     reset,
   } = useForm<FormValue>();
+
 
   const userProfile = { nickName: "", intro: "" };
   const { nickName, intro } = userProfile;
@@ -69,6 +71,7 @@ const EditProfilePage = () => {
 
   /** 프로필 폼 제출 핸들러 */
   const onSubmitHandler = (data: FormValue) => {
+
     const nickName = data.nickName;
     const intro = data.intro;
 
@@ -97,6 +100,7 @@ const EditProfilePage = () => {
             className="w-[100px] h-[100px] object-cover rounded-full"
             src={uploadedImageUrl ? uploadedImageUrl : "/123.jpeg"}
             alt={
+
               uploadedImageUrl ? `${nickName}'s profile image` : "default image"
             }
           />
@@ -120,6 +124,7 @@ const EditProfilePage = () => {
                 maxLength={20}
                 // 접근성을 위한 속성으로, 입력 필드의 유효성 검사 상태를 나타냄
                 aria-invalid={
+
                   !isDirty ? undefined : errors.nickName ? "true" : "false"
                 }
                 // 1번째 매개변수 : userid라는 이름으로 입력 요소를 등록
