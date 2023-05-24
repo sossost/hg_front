@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { deleteFollower, newFollower } from "../../api/api-social";
 import Button from "../UI/Button";
 
 type User = {
@@ -17,8 +18,16 @@ const SocialProfile = (props: User) => {
   const { userId, userName, userProfileImage } = props.user;
   const isFollowing = props.isFollowing;
 
-  const followBtnHandler = () => {
-    //axios 로 구현
+  const followBtnHandler = async () => {
+    try {
+      if (isFollowing) {
+        await deleteFollower(userId);
+      } else {
+        await newFollower(userId);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

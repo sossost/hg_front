@@ -127,8 +127,7 @@ const SocialProfileList = ({ page }: { page: Page }) => {
   const isFollowingPage = page === "followingPage";
 
   return (
-    <div className="flex flex-col gap-[20px] w-full px-[20px] lg:w-[1024px] lg:mx-auto">
-      <div className="mx-auto py-[20px]">헤더부분</div>
+    <div className="flex flex-col gap-[20px] w-full p-[20px] desktop:w-[1024px] desktop:mx-auto ">
       <div className="mx-auto">
         <h1>
           {DUMMY_USER_DATA.userName}
@@ -138,7 +137,7 @@ const SocialProfileList = ({ page }: { page: Page }) => {
             `님이 구독하는 ${DUMMY_USER_DATA.followingList.length}명`}
         </h1>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[16px]">
+      <div className="grid grid-cols-2 md:grid-cols-3 desktop:grid-cols-4 gap-[16px]">
         {isFollowerPage &&
           DUMMY_USER_DATA.followerList.map((user) => {
             const isFollowing = user.followerList.find(
