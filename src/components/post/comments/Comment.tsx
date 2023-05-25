@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import tw from "tailwind-styled-components";
 import PostLikes from "../../UI/PostLikes";
 import { isLikedFunction } from "../../../utils/isLikes-function";
 
-const StyledImage = styled.img`
-  width: 25px;
-  height: 25px;
+const StyledImage = tw.img`
+max-h-[40px]
+ max-w-[40px]
+  m-[10px]
 `;
 
 /** 코맨트 프롭스 타입지정 */
@@ -46,12 +48,11 @@ const Comment = ({ comment }: CommentProps) => {
         <div className=" flex justify-between ">
           <div className=" flex justify-between w-[100%]">
             <div>
-              <img
-                className="max-h-[40px] max-w-[40px] m-[10px]"
+              <StyledImage
                 // 사용자 이미지
                 src={profile_img}
                 alt={"사용자 이미지"}
-              ></img>
+              ></StyledImage>
             </div>
             <div className=" flex-col m-[10px] w-[100%]">
               <div className=" flex justify-between ">
