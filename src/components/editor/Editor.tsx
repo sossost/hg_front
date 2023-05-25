@@ -81,13 +81,11 @@ const Editor = ({ post }: { post: any }) => {
 
     input.onchange = async () => {
       const file = input.files && input.files[0];
-      console.log(file);
 
       if (file) {
         try {
           const formData = new FormData();
           formData.append("image", file);
-          console.log(formData.get("image"));
           const imageURL = await uploadImage(formData);
           const quill = quillRef.current?.getEditor();
           if (quill) {
@@ -174,6 +172,8 @@ const Editor = ({ post }: { post: any }) => {
           setIsModal={setIsModal}
           isHidden={isHidden}
           setIsHidden={setIsHidden}
+          newThumbnail={newThumbnail}
+          setNewThumbnail={setNewThumbnail}
         />
         <Modal
           visible={isInvalidModal}
