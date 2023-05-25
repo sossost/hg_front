@@ -1,8 +1,10 @@
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 // Axios 인스턴스 생성
 export const baseApi = axios.create({
-  baseURL: `http://${window.location.hostname}:9999/`,
+  baseURL: "https://tripsketch.onrender.com/api/",
 });
 
 // 요청 Interceptor
