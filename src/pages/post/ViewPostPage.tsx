@@ -10,10 +10,8 @@ const ViewContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   min-width: 390px;
-  min-height: 390px;
   gap: 20px;
   max-width: 1024px;
-  max-height: 1024px;
 `;
 
 const ViewPostPage = () => {
