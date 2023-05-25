@@ -13,6 +13,8 @@ type props = {
   setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
   isHidden: boolean;
   setIsHidden: React.Dispatch<React.SetStateAction<boolean>>;
+  newThumbnail: string;
+  setNewThumbnail: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const EditorModal = ({
@@ -21,6 +23,8 @@ const EditorModal = ({
   setIsModal,
   isHidden,
   setIsHidden,
+  newThumbnail,
+  setNewThumbnail,
 }: props) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
@@ -36,11 +40,13 @@ const EditorModal = ({
       console.log(file); // 선택된 파일 정보를 콘솔에 출력
 
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("image", file);
+
+      console.log(formData);
 
       const imageUrl = await uploadImage(formData);
 
-      setImageUrl(imageUrl);
+      setNewThumbnail(imageUrl);
     }
   };
 
@@ -53,7 +59,14 @@ const EditorModal = ({
       <ContainerDiv>
         <h2>썸네일 이미지</h2>
         <div className="relative w-full h-[210px] border">
-          <img src={imageUrl ? imageUrl : ""} alt="thumnail_image" />
+          {newThumbnail && (
+            <img
+              className="absolute w-full h-full top-0 left-0 right-0 bottom-0 object-cover"
+              src={newThumbnail ? newThumbnail : ""}
+              alt="thumnail_image"
+            />
+          )}
+
           <img
             src={PlusIcon}
             alt="PlusIcon"
@@ -91,7 +104,7 @@ const EditorModal = ({
             비공개
           </Button>
         </div>
-        <div className="flex justify-between lg:justify-center lg:gap-[20px] items-center fixed border-t border-t-[#ccc] bottom-0 left-0 bg-[#ffffff] w-full p-[15px]">
+        <div className="flex justify-between desktop:justify-center desktop:gap-[20px] items-center fixed border-t border-t-[#ccc] bottom-0 left-0 bg-[#ffffff] w-full p-[15px]">
           <Button
             className="w-[76px] h-[38px]"
             type="button"
