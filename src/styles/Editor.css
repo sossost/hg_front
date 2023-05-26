@@ -7,30 +7,62 @@
 .quill {
   position: fixed;
   top: 0;
+  margin: 0 auto;
   left: 0;
+  right: 0;
+
   z-index: 55;
   background-color: white;
   height: 100vh;
   width: 100vw;
+}
 
-  @media (max-width: 1024px) {
-    width: 100%;
-  }
-
-  @media (min-width: 1024px) {
-    width: 1024px;
-  }
+.ql-toolbar {
+  z-index: 60;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  border: none;
+  background-color: white;
+  border-bottom: 1px solid #ccc;
 }
 
 .ql-container {
   position: absolute;
+  z-index: 55;
   box-sizing: border-box;
+  background-color: white;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 13px;
   height: 100%;
   margin: 0px;
   position: relative;
 }
+
+.ql-editor {
+  position: fixed;
+  top: 150px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 100%;
+  min-height: 400px;
+  font-size: 14px;
+  box-sizing: border-box;
+  line-height: 1.42;
+  height: calc(100vh - 260px);
+  outline: none;
+  overflow-y: auto;
+  padding: 0 20px;
+  tab-size: 4;
+  -moz-tab-size: 4;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 .ql-container.ql-disabled .ql-tooltip {
   visibility: hidden;
 }
@@ -48,24 +80,7 @@
   margin: 0;
   padding: 0;
 }
-.ql-editor {
-  position: fixed;
-  top: 150px;
-  width: calc(100% - 40px);
-  min-height: 400px;
-  font-size: 14px;
-  box-sizing: border-box;
-  line-height: 1.42;
-  height: calc(100vh - 260px);
-  outline: none;
-  overflow-y: auto;
-  padding: 0 20px;
-  tab-size: 4;
-  -moz-tab-size: 4;
-  text-align: left;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
+
 .ql-editor > * {
   cursor: text;
 }
@@ -976,16 +991,13 @@
 .ql-snow a {
   color: #06c;
 }
-.ql-container.ql-snow {
-}
 
-.ql-toolbar {
-  position: fixed;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 50px;
-  border: none;
-  background-color: white;
-  border-bottom: 1px solid #ccc;
+@media (min-width: 1024px) {
+  .ql-editor {
+    width: 1024px;
+    margin: 0 auto;
+  }
+  .ql-toolbar.ql-snow {
+    padding: 0 calc((100% - 1000px) / 2);
+  }
 }

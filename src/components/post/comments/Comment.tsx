@@ -1,18 +1,46 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import tw from "tailwind-styled-components";
+import PostLikes from "../../UI/PostLikes";
+import { isLikedFunction } from "../../../utils/isLikes-function";
 
-const StyledImage = styled.img`
-  width: 25px;
-  height: 25px;
+const StyledImage = tw.img`
+max-h-[40px]
+ max-w-[40px]
+  m-[10px]
 `;
 
-/**댓글 컴포넌트 */
-const Comment = () => {
-  const userImgUrl = "/user1-image.png";
-  const [isLiked, setIsLiked] = useState(false);
-  const handleLikeButtonClick = () => {
-    setIsLiked(!isLiked);
+/** 코맨트 프롭스 타입지정 */
+type CommentProps = {
+  comment: {
+    comment_id: number;
+    created_at: string;
+    content: string;
+    user: {
+      id: number;
+      nickName: string;
+      profile_img: string;
+    };
+    likes: number;
+    liked_user_list: number[];
   };
+};
+
+/**댓글 컴포넌트 */
+const Comment = ({ comment }: CommentProps) => {
+  /**props로 받아온 데이터를 구조분해 할당*/
+  const {
+    comment_id,
+    created_at,
+    content,
+    user: { id, nickName, profile_img },
+    likes,
+    liked_user_list,
+  } = comment;
+
+  //로그인 되어있는 유저 예시
+  const userId = 1414;
+  const isLiked = isLikedFunction({ likedPersons: liked_user_list }, userId);
 
   return (
     <>
@@ -20,39 +48,27 @@ const Comment = () => {
         <div className=" flex justify-between ">
           <div className=" flex justify-between w-[100%]">
             <div>
-              <img
-                className="max-h-[40px] max-w-[40px] m-[10px]"
-                src={userImgUrl}
+              <StyledImage
+                // 사용자 이미지
+                src={profile_img}
                 alt={"사용자 이미지"}
-              ></img>
+              ></StyledImage>
             </div>
             <div className=" flex-col m-[10px] w-[100%]">
               <div className=" flex justify-between ">
-                <span>닉네임</span>
-                <span className="text-[8px]">2023.05.18</span>
+                <span>{nickName}</span>
+                <span className="text-[8px]">{created_at}</span>
               </div>
               <div>
-                <span>
-                  댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글
-                  내용댓글 내용댓글 내용댓글 내용댓
-                </span>
+                {/* 댓글내용 */}
+                <span>{content}</span>
               </div>
             </div>
           </div>
-          <div className="flex items-center">
-            <div className=" m-[10px] flex items-center w-[85px] ">
-              <button
-                className="flex m-[0px] m-[auto] mr-[10px]"
-                onClick={handleLikeButtonClick}
-              >
-                <StyledImage
-                  src={isLiked ? "/heart-filled.png" : "/heart-empty.png"}
-                  alt="하트 이미지"
-                />
-              </button>
-              <span className="w-[50px]">count</span>
-            </div>
-          </div>
+          <PostLikes
+            likesCount={Number(liked_user_list.length)}
+            isLiked={isLiked}
+          />
         </div>
       </div>
     </>

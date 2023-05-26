@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { baseApi } from "../../api/api";
 
 // 입력 데이터 형식 지정
 type FormData = {
-  userid: string;
+  nickName: string;
+  userName: string;
   password: string;
   confirmPassword: string;
-  nickname: string;
   email: string;
 };
 
@@ -23,14 +24,29 @@ const SignUpPage: React.FC = () => {
 
   const navigate = useNavigate();
 
+  // 회원가입 버튼 핸들러
   const onSubmitHandler = (data: FormData) => {
-    axios
-      .post("/api/signup", data)
+    console.log(data);
+
+    // 서버에 넘겨줄 데이터 포장
+    const requestData = {
+      nickName: data.nickName,
+      userName: data.userName,
+      password: data.password,
+      email: data.email,
+      phoneNumber: "010-0000-0000",
+      intro: "wow",
+      role: "user",
+    };
+
+    console.log(requestData);
+    baseApi
+      .post("/v1/users/signup", requestData)
       .then((response) => {
         // 회원가입 성공 시 회원가입 완료 페이지로 이동
         if (response.status === 200) {
           console.log("회원가입이 성공적으로 완료되었습니다.");
-          navigate("/api/signup_complete");
+          navigate("/signup_complete");
         } else {
           console.log("회원가입에 실패했습니다.");
         }
@@ -85,7 +101,7 @@ const SignUpPage: React.FC = () => {
               className="p-[10px] border-[#73BBFB] border-[2px] 
               w-[300px] h-[55px]  rounded-[10px]
               focus:outline-[#167DD8] focus:outline-[2px]"
-              {...register("userid", {
+              {...register("userName", {
                 required: "아이디를 입력해주세요",
                 minLength: {
                   value: 4,
@@ -102,9 +118,9 @@ const SignUpPage: React.FC = () => {
                 },
               })}
             />
-            {errors.userid && (
+            {errors.userName && (
               <span className="mt-[5px] text-[14.5px] text-[#167DD8]">
-                {errors.userid.message}
+                {errors.userName.message}
               </span>
             )}
           </div>
@@ -170,7 +186,7 @@ const SignUpPage: React.FC = () => {
           <div className="flex flex-col">
             <label className="mb-[5px]">닉네임</label>
             <input
-              {...register("nickname", {
+              {...register("nickName", {
                 required: "닉네임은 필수 입력입니다.",
                 maxLength: {
                   value: 15,
@@ -181,9 +197,9 @@ const SignUpPage: React.FC = () => {
               w-[300px] h-[55px]  rounded-[10px]
               focus:outline-[#167DD8] focus:outline-[2px]"
             />
-            {errors.nickname && (
+            {errors.nickName && (
               <span className="mt-[5px] text-[14.5px] text-[#167DD8]">
-                {errors.nickname.message}
+                {errors.nickName.message}
               </span>
             )}
           </div>
