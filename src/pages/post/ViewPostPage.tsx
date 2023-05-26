@@ -8,7 +8,7 @@ const ViewContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin: 0 auto;
+  margin: 20px;
   min-width: 390px;
   gap: 20px;
   max-width: 1024px;
